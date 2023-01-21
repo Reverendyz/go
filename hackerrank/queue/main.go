@@ -9,8 +9,8 @@ import (
 )
 
 func Dequeue(queue []int) []int {
-	var index = 0
-	return queue[:index]
+	var second_index = 1
+	return queue[second_index:int(len(queue))]
 }
 
 func PrintElement(queue []int) {
@@ -19,14 +19,15 @@ func PrintElement(queue []int) {
 
 func Operation(line string, queue []int) []int {
 	var value int
+
+	line = strings.TrimSpace(line)
 	array := strings.Split(line, " ")
+
 	operation, _ := strconv.Atoi(array[0])
+
 	if len(array) > 1 {
 		value, _ = strconv.Atoi(array[1])
 	}
-
-	// fmt.Printf("Op: %d Value: %d", operation, value)
-
 	switch operation {
 	case 1:
 		queue = append(queue, value)
@@ -41,22 +42,17 @@ func Operation(line string, queue []int) []int {
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	var queue []int
-	var lines string
 
-	for {
-		line, _ := reader.ReadString('\n')
+	var FirstLine int
 
-		if line == "" {
-			break
-		}
-
-		lines += line
+	_, err := fmt.Scanf("%d", &FirstLine)
+	if err != nil {
+		panic(err)
 	}
 
-	array_lines := strings.Split(lines, "\n")
-	line_amount, _ := strconv.Atoi(array_lines[0])
+	for i := 0; i < FirstLine; i++ {
 
-	for i := 1; i <= line_amount; i++ {
-		queue = Operation(array_lines[i], queue)
+		line, _ := reader.ReadString('\n')
+		queue = Operation(line, queue)
 	}
 }

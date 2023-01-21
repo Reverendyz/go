@@ -47,6 +47,16 @@ func dup_count(list []int) []int {
 	return duplicatedValues
 }
 
+func vaidate(slice, notIncluded, duplicatedValues []int) {
+	for _, duplicated := range duplicatedValues {
+		for _, value := range slice {
+			if duplicated == value {
+
+			}
+		}
+	}
+}
+
 func main() {
 	var array []int
 	var number int
@@ -58,9 +68,5 @@ func main() {
 	notIncluded := getNotIncluded(array)
 	duplicates := dup_count(array)
 
-	fmt.Println(notIncluded)
-	fmt.Println(duplicates)
-	for i := 1; i < 10; i++ {
-
-	}
+	validate(array, notIncluded, duplicates)
 }
